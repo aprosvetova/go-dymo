@@ -1,4 +1,4 @@
-package main
+package dymo
 
 import (
 	"github.com/boombuler/hid"
