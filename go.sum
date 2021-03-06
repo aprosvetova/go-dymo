@@ -1,2 +1,4 @@
 github.com/boombuler/hid v0.0.0-20200606170446-6a2dff8586bc h1:mPoyO6/N4SwSKRhuhYccA3dAVSnQFRl+3kuiTf9ptAQ=
 github.com/boombuler/hid v0.0.0-20200606170446-6a2dff8586bc/go.mod h1:5tIGNm7VNPEAS8ulRl5g4wU/zCpPgj5vyYI5Bo77Hz8=
+github.com/zserge/hid v0.0.0-20190124175232-e1626f1782f3 h1:DAdExZJtAXR150WHt4wzTCzHH7lXkD4vKN9xLtF05VU=
+github.com/zserge/hid v0.0.0-20190124175232-e1626f1782f3/go.mod h1:OpyudhSlA/GSwcydk4+0Ex9DBI+9mOs/Pk06vmIjLSA=

@@ -1,9 +1,10 @@
 package dymo
 
 import (
-	"github.com/boombuler/hid"
+	"github.com/zserge/hid"
 	"image"
 	"image/color"
+	"time"
 )
 
 const minWidth = 150
@@ -17,12 +18,16 @@ const esc = 0x1B
 const syn = 0x16
 
 func FindPrinter() *Printer {
-	ch := hid.FindDevices(dymoVid, dymoPid)
 	var p Printer
-	for d := range ch {
-		p.d = d
-	}
-	if p.d == nil {
+	var found bool
+	hid.UsbWalk(func(d hid.Device) {
+		info := d.Info()
+		if info.Vendor == dymoVid && info.Product == dymoPid {
+			found = true
+			p.d = &d
+		}
+	})
+	if !found {
 		return nil
 	}
 	return &p
@@ -43,18 +48,18 @@ func (p *Printer) Print(img image.Image, c color.Color) error {
 		data = append(data, col...)
 	}
 
-	dev, err := p.d.Open()
+	err := p.d.Open()
 	if err != nil {
 		return err
 	}
 
-	dev.Write(data)
+	p.d.Write(data, 3*time.Second)
 
-	dev.Close()
+	p.d.Close()
 
 	return nil
 }
 
 type Printer struct {
-	d *hid.DeviceInfo
+	d hid.Device
 }
