@@ -24,7 +24,7 @@ func FindPrinter() *Printer {
 		info := d.Info()
 		if info.Vendor == dymoVid && info.Product == dymoPid {
 			found = true
-			p.d = &d
+			p.d = d
 		}
 	})
 	if !found {
